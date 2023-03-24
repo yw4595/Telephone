@@ -1,0 +1,8 @@
+C:\Users\Wiz\Desktop\IGME 201\Telephone\obj\Debug\Telephone.csproj.AssemblyReference.cache
+C:\Users\Wiz\Desktop\IGME 201\Telephone\obj\Debug\Telephone.csproj.SuggestedBindingRedirects.cache
+C:\Users\Wiz\Desktop\IGME 201\Telephone\obj\Debug\Telephone.csproj.CoreCompileInputs.cache
+C:\Users\Wiz\Desktop\IGME 201\Telephone\bin\Debug\Telephone.exe.config
+C:\Users\Wiz\Desktop\IGME 201\Telephone\bin\Debug\Telephone.exe
+C:\Users\Wiz\Desktop\IGME 201\Telephone\bin\Debug\Telephone.pdb
+C:\Users\Wiz\Desktop\IGME 201\Telephone\obj\Debug\Telephone.exe
+C:\Users\Wiz\Desktop\IGME 201\Telephone\obj\Debug\Telephone.pdb
