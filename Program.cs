@@ -1,131 +1,184 @@
-/ Author: Yanzhi Wang
-// Purpose: Define a hierarchy of phone types, including rotary and push-button phones, and a class of the Tardis phone from Doctor Who, which implements IComparable and custom comparison operators.
-// Restrictions: None known.
+using System;
 
 namespace Telephone
 {
-public abstract class Phone
-{
-public string PhoneNumber { get; set; }
-public string Address { get; set; }
-        // Abstract methods for connecting and disconnecting the phone.
-    public abstract void Connect();
-    public abstract void Disconnect();
-}
+    // Author: Yanzhi Wang
+    // Purpose: Define classes and interfaces for telephone objects
 
-// Interface defining phone actions.
-public interface IPhoneActions
-{
-    void Answer();
-    void MakeCall();
-    void HangUp();
-}
-
-// Class for rotary phone, inherits from Phone and implements IPhoneActions.
-public class RotaryPhone : Phone, IPhoneActions
-{
-    public void Answer() { }
-    public void MakeCall() { }
-    public void HangUp() { }
-
-    public override void Connect() { }
-    public override void Disconnect() { }
-}
-
-// Class for push-button phone, inherits from Phone and implements IPhoneActions.
-public class PushButtonPhone : Phone, IPhoneActions
-{
-    public void Answer() { }
-    public void MakeCall() { }
-    public void HangUp() { }
-
-    public override void Connect() { }
-    public override void Disconnect() { }
-}
-
-// Class for Tardis phone, inherits from RotaryPhone and implements IComparable.
-public class Tardis : RotaryPhone, IComparable<Tardis>
-{
-    public byte WhichDrWho { get; }
-    public string FemaleSideKick { get; }
-    public double ExteriorSurfaceArea { get; }
-    public double InteriorVolume { get; }
-    public bool SonicScrewdriver { get; }
-
-    // Constructor for Tardis phone.
-    public Tardis(byte whichDrWho, string femaleSideKick, double exteriorSurfaceArea, double interiorVolume, bool sonicScrewdriver)
+    // Define the main class for the program
+    class Program
     {
-        WhichDrWho = whichDrWho;
-        FemaleSideKick = femaleSideKick;
-        ExteriorSurfaceArea = exteriorSurfaceArea;
-        InteriorVolume = interiorVolume;
-        SonicScrewdriver = sonicScrewdriver;
-    }
-
-    // Compare Tardis phones based on their WhichDrWho property.
-    public int CompareTo(Tardis other)
-    {
-        return WhichDrWho.CompareTo(other.WhichDrWho);
-    }
-
-    // Custom comparison operators for Tardis phones.
-    public static bool operator ==(Tardis t1, Tardis t2)
-    {
-        return t1?.WhichDrWho == t2?.WhichDrWho;
-    }
-
-    public static bool operator !=(Tardis t1, Tardis t2)
-    {
-        return !(t1 == t2);
-    }
-
-    public static bool operator <(Tardis t1, Tardis t2)
-    {
-        if (t1?.WhichDrWho == 10 && t2?.WhichDrWho != 10)
+        // Define the entry point for the program
+        static void Main(string[] args)
         {
-            return false;
+            // The Main method is currently empty and does not perform any actions
         }
-        else if (t2?.WhichDrWho == 10 && t1?.WhichDrWho != 10)
+
+        // Define an interface for a phone object
+        interface IPhoneInterface
         {
-            return true;
+            // Define methods that must be implemented by any class that implements this interface
+            void Answer();      // Answers the phone
+            void MakeCall();    // Dials a phone number
+            void HangUp();      // Ends a phone call
         }
-        else
+
+        // Define a base class for phone objects that implements the IPhoneInterface
+        class Phone : IPhoneInterface
         {
-            return t1?.WhichDrWho < t2?.WhichDrWho;
+            // Define a private field for the phone number of the phone object
+            private string phoneNumber;
+
+            // Define a public property for the phone number of the phone object
+            public string PhoneNumber
+            {
+                get { return phoneNumber; }
+                set { phoneNumber = value; }
+            }
+
+            // Define a public property for the address of the phone object
+            public string Address { get; set; }
+
+            // Implement the Answer method of the IPhoneInterface
+            public void Answer()
+            {
+                Console.WriteLine("Hello World!");
+            }
+
+            // Implement the MakeCall method of the IPhoneInterface
+            public void MakeCall()
+            {
+                Console.WriteLine("Dialing...");
+            }
+
+            // Implement the HangUp method of the IPhoneInterface
+            public void HangUp()
+            {
+                Console.WriteLine("Hanging up...");
+            }
+
+            // Define a new method for connecting the phone object
+            public void Connect()
+            {
+                Console.WriteLine("Connecting...");
+            }
+
+            // Define a new method for disconnecting the phone object
+            public void Disconnect()
+            {
+                Console.WriteLine("Disconnecting...");
+            }
+
+            // Override the ToString method to return a string representation of the phone object
+            public override string ToString()
+            {
+                return $"{GetType().Name}({PhoneNumber})";
+            }
+        }
+
+        // Define a class for rotary phone objects that inherits from the Phone class
+        class RotaryPhone : Phone
+        {
+            // Override the Connect method of the Phone class
+            public new void Connect()
+            {
+                Console.WriteLine("Rotary phone connecting...");
+            }
+
+            // Override the Disconnect method of the Phone class
+            public new void Disconnect()
+            {
+                Console.WriteLine("Rotary phone disconnecting...");
+            }
+        }
+
+        // Define a class for TARDIS phone objects that inherits from the Phone class
+        // Class for TARDIS phone objects that inherits from the Phone class
+        class Tardis : Phone
+        {
+            // Whether or not the TARDIS phone object has a sonic screwdriver
+            private bool sonicScrewdriver;
+            // The version of Dr. Who associated with the TARDIS phone object
+            private byte whichDrWho;
+            // The female sidekick associated with the TARDIS phone object
+            private string femaleSideKick;
+
+            // The exterior surface area of the TARDIS phone object
+            public double ExteriorSurfaceArea { get; set; }
+            // The interior volume of the TARDIS phone object
+            public double InteriorVolume { get; set; }
+
+            // Gets or sets the version of Dr. Who associated with the TARDIS phone object
+            public byte WhichDrWho
+            {
+                get { return whichDrWho; }
+                set { whichDrWho = value; }
+            }
+
+            // Gets or sets the female sidekick associated with the TARDIS phone object
+            public string FemaleSideKick
+            {
+                get { return femaleSideKick; }
+                set { femaleSideKick = value; }
+            }
+
+            // Causes the TARDIS phone object to travel through time
+            public void TimeTravel()
+            {
+                Console.WriteLine("Time traveling...");
+            }
+
+            // Returns a string representation of the TARDIS phone object
+            public override string ToString()
+            {
+                return $"{GetType().Name}(Dr. Who: {WhichDrWho})";
+            }
+
+            // Checks if two TARDIS phone objects are equal
+            public static bool operator ==(Tardis a, Tardis b)
+            {
+                if (a.whichDrWho == b.whichDrWho)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // Checks if two TARDIS phone objects are not equal
+            public static bool operator !=(Tardis a, Tardis b)
+            {
+                if (a.whichDrWho != b.whichDrWho)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // Determines if a TARDIS phone object is equal to another object
+            public override bool Equals(object obj)
+            {
+                if (obj is Tardis)
+                {
+                    Tardis otherTardis = (Tardis)obj;
+                    return this == otherTardis;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // Returns a hash code for the TARDIS phone object
+            public override int GetHashCode()
+            {
+                return (int)whichDrWho;
+            }
         }
     }
-
-    public static bool operator >(Tardis t1, Tardis t2)
-    {
-        if (t1?.WhichDrWho == 10 && t2?.WhichDrWho != 10)
-        {
-            return true;
-        }
-        else if (t2?.WhichDrWho == 10 && t1?.WhichDrWho != 10)
-{
-return false;
-}
-else
-{
-return t1?.WhichDrWho > t2?.WhichDrWho;
-}
-}
-}
-
-namespace Telephone
-{
-class Program
-{
-static void Main(string[] args)
-{
-Tardis tardis1 = new Tardis(10, "Rose", 1000, 2000, true);
-Tardis tardis2 = new Tardis(11, "Martha", 1100, 2200, false);
-            Console.WriteLine(tardis1 == tardis2);  // False
-        Console.WriteLine(tardis1 != tardis2);  // True
-        Console.WriteLine(tardis1 > tardis2);   // False
-        Console.WriteLine(tardis1 < tardis2);   // True
-
-        Console.ReadLine();
-    }
-}
 }
